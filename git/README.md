@@ -7,8 +7,17 @@ I usually hide these files to keep my home directory clean.
 ```bash
 source ~/.git-completion
 source ~/.git-prompt
+```
 
-export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $(__git_ps1 "[%s] ")\$ '
+Modify your prompt.
+We'll use the colorized prompt based on the default Ubuntu prompt configuration + git-prompt function. The displayed branch name string length is also limited.
+
+```bash
+export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] [$(echo $(__git_ps1 "%s") | cut -c 1-20)] \$ '
+
+# Show part of the working directory path to preserve space in prompt.
+export PROMPT_DIRTRIM=2
+
 ```
 
 Alternatively, install ```sudo apt-get install git-core bash-completion``` and use ```source /usr/share/bash-completion/completions/git```
