@@ -518,7 +518,9 @@ __git_ps1 ()
 	fi
 
 	local f="$w$i$s$u"
-	local gitstring="$c$b${f:+$z$f}$r$p"
+
+	# Shorten branch name b to 20 characters max (k1ll3rf0x)
+	local gitstring="$c${b:0:20}${f:+$z$f}$r$p"
 
 	if [ $pcmode = yes ]; then
 		if [ "${__git_printf_supports_v-}" != yes ]; then
