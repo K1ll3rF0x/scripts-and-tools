@@ -30,6 +30,10 @@ if [ -f ~/.git-prompt ]; then
 
   # Show part of the working directory path to preserve space in prompt.
   export PROMPT_DIRTRIM=2
+
+  
+  # Set terminal title (will show parent-dir/current-dir)
+  echo -ne "\033]0;${PWD#"${PWD%/*/*}/"}\007"
 fi
 ```
 
