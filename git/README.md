@@ -26,14 +26,10 @@ if [ -f ~/.git-prompt ]; then
 
   source ~/.git-prompt
 
-  export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $(__git_ps1 "[%s]") \$ '
+  export PS1='\[\e]0;\w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $(__git_ps1 "[%s]") \$ '
 
   # Show part of the working directory path to preserve space in prompt.
   export PROMPT_DIRTRIM=2
-
-  
-  # Set terminal title (will show parent-dir/current-dir)
-  echo -ne "\033]0;${PWD#"${PWD%/*/*}/"}\007"
 fi
 ```
 
