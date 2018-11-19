@@ -25,7 +25,7 @@ if [ -f ~/.git-prompt ]; then
   GIT_PS1_HIDE_IF_PWD_IGNORED=true # Show nothing is directory is ignore by git
 
   source ~/.git-prompt
-
+  # <terminal title from \e to \a> \e \w <path> \a \u <user> @ \h  <host> : \w <path> [<git-prompt output>] $
   export PS1='\[\e]0;\w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $(__git_ps1 "[%s]") \$ '
 
   # Show part of the working directory path to preserve space in prompt.
