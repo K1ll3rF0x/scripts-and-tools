@@ -25,28 +25,25 @@ if [ -f ~/.git-prompt ]; then
   GIT_PS1_HIDE_IF_PWD_IGNORED=true # Show nothing is directory is ignore by git
 
   source ~/.git-prompt
-
-  export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $(__git_ps1 "[%s]") \$ '
+  # <terminal title from \e to \a> \e \w <path> \a \u <user> @ \h  <host> : \w <path> [<git-prompt output>] $
+  export PS1='\[\e]0;\w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $(__git_ps1 "[%s]") \$ '
 
   # Show part of the working directory path to preserve space in prompt.
   export PROMPT_DIRTRIM=2
-
-  
-  # Set terminal title (will show parent-dir/current-dir)
-  echo -ne "\033]0;${PWD#"${PWD%/*/*}/"}\007"
 fi
 ```
 
 Alternatively, install ```sudo apt-get install git-core bash-completion``` and use ```source /usr/share/bash-completion/completions/git```
 
 
-### Pretty log
+### Pretty log and other git aliases
 Add this in your .gitconfig
 
 ```bash
 [alias]
         prettylog = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
         prettylog2 = log --all --decorate --oneline --graph
+        log-dir = !cd ${GIT_PREFIX:-.} && git log --name-status -10 $PWD
 ```
 
 
