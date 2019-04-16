@@ -36,18 +36,8 @@ fi
 Alternatively, install ```sudo apt-get install git-core bash-completion``` and use ```source /usr/share/bash-completion/completions/git```
 
 
-### Pretty log and other git aliases
-Add this in your .gitconfig
+### Prettylog and other aliases in .gitconfig
 
-```bash
-[alias]
-        prettylog = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-        prettylog2 = log --all --decorate --oneline --graph
-        log-dir = !cd ${GIT_PREFIX:-.} && git log --name-status -10 $PWD
-```
-
-
-### Other aliases in .gitconfig
-
-* git log-dir: List history in path.
-* git gadd: Shortcut for glob add. E.g. git add **filename* <-> git gadd filename
+* ```git log-dir```: List history in path.
+* ```git gadd```: Shortcut for glob add. I.e. git add **filename* <-> git gadd filename. This reduces a 
+* ```git prettylog```: Print prettified git log.
