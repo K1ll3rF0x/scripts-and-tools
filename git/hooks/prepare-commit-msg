@@ -7,7 +7,13 @@ if [ -z "$2" ]; then
   PIVOTAL_STORY_NUMBER=$(echo "$CURRENT_BRANCH_NAME" | sed -n 's/^\#\{0,1\}\([0-9]*\)-.*/\1/p')
 
 
-  # Add default metadata
+  ## Add default metadata
+
+  # Optional trailers. It does not matter if these are not filled.
+  sed -i.back "1s/^/\nRelated:\n/" "$1"
+  sed -i.back "1s/^/\nRelNotes:/" "$1"
+
+  # Add Pivotal story ID automatically if it could be parsed from the branch name
   if [ -n "${PIVOTAL_STORY_NUMBER}" ]; then
     sed -i.back "1s/^/\n\nTicket: [#${PIVOTAL_STORY_NUMBER}]/" "$1"
   fi
