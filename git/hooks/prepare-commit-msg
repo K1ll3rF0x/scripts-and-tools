@@ -15,6 +15,7 @@ if [ -z "$2" ]; then
 
   # Add Pivotal story ID automatically if it could be parsed from the branch name
   if [ -n "${PIVOTAL_STORY_NUMBER}" ]; then
-    sed -i.back "1s/^/\n\nTicket: [#${PIVOTAL_STORY_NUMBER}]/" "$1"
+    sed -i.back "1s/^/\n\nTicket: #${PIVOTAL_STORY_NUMBER}/" "$1"
+    sed -i.back "1s/^/\n\n# Story ID for tracker automation. Will be removed in pivotal UI.\n[#${PIVOTAL_STORY_NUMBER}]/" "$1"
   fi
 fi
