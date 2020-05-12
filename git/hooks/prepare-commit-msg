@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Process only if creating commit msg without option -m or other.
+#   This allows adding commit messages without auto-added metadata using git commit -m "Your message."
+if [ -z "$2" ]; then
+  CURRENT_BRANCH_NAME=$(git symbolic-ref --short HEAD)
+  PIVOTAL_STORY_NUMBER=$(echo "$CURRENT_BRANCH_NAME" | sed -n 's/^\#\{0,1\}\([0-9]*\)-.*/\1/p')
+
+
+  # Add default metadata
+  if [ -n "${PIVOTAL_STORY_NUMBER}" ]; then
+    sed -i.back "1s/^/\n\nTicket: [#${PIVOTAL_STORY_NUMBER}]/" "$1"
+  fi
+fi
