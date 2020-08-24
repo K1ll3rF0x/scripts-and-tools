@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Get trailers from git log e.g. $ git log --format="%(trailers:key=Ticket,key=RelNotes)"
+
 # Process only if creating commit msg without option -m or other.
 #   This allows adding commit messages without auto-added metadata using git commit -m "Your message."
 if [ -z "$2" ]; then
